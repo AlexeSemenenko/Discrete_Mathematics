@@ -12,29 +12,24 @@ int main() {
 
     in >> count_of_vertex;
 
-    std::vector<std::vector<int>> matrix(count_of_vertex, std::vector<int>(count_of_vertex, 0));
     std::vector<int> family(count_of_vertex, 0);
 
     while (!in.eof()) {
-        if(count == 6){
+        if(count == count_of_vertex){
             i++;
             count = 0;
         }
 
         in >> temp;
-        matrix[i][count] = temp;
+
+        if(temp == 1){
+            family[count] = i + 1;
+        }
+
         count++;
     }
 
     in.close();
-
-    for(int i = 0; i < count_of_vertex; i++){
-        for(int j = 0; j < count_of_vertex; j++){
-            if(matrix[i][j] == 1){
-                family[j] = i + 1;
-            }
-        }
-    }
 
     std::ofstream out("output.txt");
     for (int i = 0; i < count_of_vertex; i++){
